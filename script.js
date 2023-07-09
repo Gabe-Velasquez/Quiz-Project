@@ -4,9 +4,13 @@
 let timeEl = document.querySelector('.time');
 let secondsLeft = 60;
 let gameStart = document.querySelector('#btnStart');
+let gameTitle = document.querySelector('#game-title');
+let gameInProgess = document.querySelector('.container');
 
 function setTime(){
     let quizTimer =setInterval(function(){
+        // gameTitle.setAttribute('display:', 'none');
+        // gameInProgess.setAttribute('visibility,', 'visible');
         secondsLeft--;
         timeEl.textContent = 'Seconds Left:' + ' ' + secondsLeft;
 
