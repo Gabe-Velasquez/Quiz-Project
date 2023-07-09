@@ -1,0 +1,48 @@
+
+body{
+    margin: 2% 3%;
+    background-color: steelblue;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: larger;
+}
+
+.container{
+    margin: 3% 10%;
+    word-spacing: 3px;
+    font-size: larger;
+    /* background-color: aqua; */
+}
+
+.question{
+    background-color: darkkhaki;
+    margin: 3%;
+    padding: 2%;
+    border-radius: 8px;
+}
+
+.answer{
+    background-color: cadetblue;
+    color:coral;
+    border-radius: 8px;
+    margin: 2% 3%;
+    text-align: center;
+    padding: 10px;
+}
+
+.answer:hover{
+    background-color: gold;
+}
+
+.guess{
+    text-align: center;
+    font-family: 'Playfair Display SC', serif;
+    color: rgba(88, 233, 191, 0.52);
+    font-weight: 900;
+    font-size: 4em;
+}
