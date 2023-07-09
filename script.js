@@ -1,6 +1,23 @@
 // GIVEN I am taking a code quiz
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
+let timeEl = document.querySelector('.time');
+let secondsLeft = 60;
+let gameStart = document.querySelector('#btnStart');
+
+function setTime(){
+    let quizTimer =setInterval(function(){
+        secondsLeft--;
+        timeEl.textContent = 'Seconds Left:' + ' ' + secondsLeft;
+
+        if (secondsLeft ===0){
+            clearInterval(quizTimer);
+        }
+    }, 1000); //setting it to 1000 because it is in milliseconds
+}
+
+gameStart.addEventListener('click', setTime);
+
 
 // WHEN I answer a question
 // THEN I am presented with another question

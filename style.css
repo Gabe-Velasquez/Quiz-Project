@@ -12,6 +12,21 @@ body{
     font-size: larger;
 }
 
+.game-title{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    flex-direction: column;
+    font-size:xx-large;
+}
+
+
+
+#btnStart{
+    margin: 2% 40%;
+}
+
 .container{
     margin: 3% 10%;
     word-spacing: 3px;
