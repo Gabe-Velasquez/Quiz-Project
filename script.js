@@ -38,6 +38,8 @@ function questionStart(){
     answerDEl.textContent = questions[questionSequence].options[3];
 }
 
+
+
 gameStart.addEventListener('click', function(){
     questionStart();
     setTime();
@@ -55,27 +57,27 @@ const questions = [
     },
     //Question 2 
     {
-        question: '',
-        options: ['', '', '', ''],
-        answer: '', 
+        question: 'Which of these billionaires is not from Seattle?',
+        options: ['Bill Gates', 'Elon Musk', 'Steve Balmer ', 'Jeff Bezos'],
+        answer: 'b', 
     },
     //Question 3 
     {
-        question: '',
-        options: ['', '', '', ''],
-        answer: '', 
+        question: 'Which one of these NHL teams calls Seattle "home"?',
+        options: ['Avalanche', 'Kraken', 'Sharks', 'Red Wings'],
+        answer: 'b', 
     },
     //Question 4
     {
         question: 'The Pacific Northwest is home to which of these companies?',
         options: ['Amazon', 'Microsoft', 'Boeing', 'All of the Above'],
-        answer: '', 
+        answer: 'd', 
     },
     //Question 5
     {
-        question: '',
-        options: ['', '', '', ''],
-        answer: '', 
+        question: 'What does a Seattle Dog have in it?',
+        options: ['Cream Cheese and Onions', 'Avocado and Chopped Tomatoes', 'Brown Mustard and Anchovies', 'Cheese and Chili'],
+        answer: 'a', 
     }
 ]
 
@@ -89,6 +91,11 @@ function nextQuestion (options){
         guess.textContent = 'Wrong!💩';
         secondsLeft = secondsLeft - 5;
     }
+    questionSequence++;
+    questionStart();
+    setTimeout(function(){
+        guess.textContent='';
+    }, 2000);
 }
 
 // WHEN all questions are answered or the timer reaches 0
