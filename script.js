@@ -85,10 +85,10 @@ const questions = [
 // THEN time is subtracted from the clock
 function nextQuestion (options){
     if (options === questions[questionSequence].answer){
-        guess.textContent = "🥳🥳Correct!!!🥳🥳";
+        guess.textContent = "🥳🥳 Correct!!! 🥳🥳";
         score++;
     } else {
-        guess.textContent = 'Wrong!💩';
+        guess.textContent = 'Wrong! 💩';
         secondsLeft = secondsLeft - 5;
     }
     questionSequence++;
