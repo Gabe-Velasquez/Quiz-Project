@@ -46,10 +46,35 @@
         <hr>
         <div 
             class="guess" 
-            id="guess"> Meow!
+            id="guess">
+        </div>
+        <div 
+            class="answer-description" 
+            id="answer-description">
         </div>
     </div>
+
+    <!-- High Scores -->
+    <div class="high-score" id="high-score">
+        <h1>High Scores!!</h1>
+        <ul id="score-list"></ul>
+        <hr>
+        <input type="text" value="Return to Game" class="btnback">
+        <input type="text" value="Clear Scores" class="clear">
+    </div>
+
+    <!-- User Score  -->
+    <div class="score" id="score">
+        <h1>You completed the quiz!!</h1>
+        <h2 id="scored-points">Final Score is...</h2>
+        <form>
+            <label for="initials">Your Initials:</label>
+            <input type="text" class="initials">
+            <input type="text" value="submit" class="btnsubmit">
+        </form>
+    </div>
   
+    
 <script src="script.js"></script>
 </body>
 </html>

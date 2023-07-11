@@ -12,6 +12,12 @@ body{
     font-size: larger;
 }
 
+.scores{
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}
+
 .game-title{
     display: flex;
     justify-content: center;

@@ -4,8 +4,14 @@
 let timeEl = document.querySelector('.time');
 let secondsLeft = 60;
 let gameStart = document.querySelector('#btnStart');
+let btnBack = document.querySelector('.btnback');
+let btnClear = document.querySelector('.clear');
+let btnSubmit = document.querySelector('.btnsubmit');
 let gameTitle = document.querySelector('.game-title');
 let gameInProgess = document.querySelector('.container');
+let highScoreScreen = document.querySelector('#high-score');
+let userScore = document.querySelector('#score');
+let initials = document.querySelector('#initials');
 
 let questionSequence = 0;
 let score = 0;
@@ -14,7 +20,6 @@ let answerAEl = document.querySelector('#answerA');
 let answerBEl = document.querySelector('#answerB');
 let answerCEl = document.querySelector('#answerC');
 let answerDEl = document.querySelector('#answerD');
-
 let guess = document.querySelector('#guess');
 
 function setTime(){
@@ -57,7 +62,7 @@ const questions = [
     },
     //Question 2 
     {
-        question: 'Which of these billionaires is not from Seattle?',
+        question: 'Which of these billionaires is not from or live in Seattle?',
         options: ['Bill Gates', 'Elon Musk', 'Steve Balmer ', 'Jeff Bezos'],
         answer: 'b', 
     },
@@ -89,10 +94,11 @@ function nextQuestion (options){
         score++;
     } else {
         guess.textContent = 'Wrong! 💩';
-        secondsLeft = secondsLeft - 5;
+        secondsLeft = secondsLeft - 10;
     }
     questionSequence++;
     questionStart();
+    console.log('Score: '+ score);
     setTimeout(function(){
         guess.textContent='';
     }, 2000);
@@ -100,6 +106,9 @@ function nextQuestion (options){
 
 // WHEN all questions are answered or the timer reaches 0
 // THEN the game is over
+if (timeEl === 0 || questionSequence === 5){
+    gameInProgess.style.display = 'hidden';
+}
 
 // WHEN the game is over
 // THEN I can save my initials and score
