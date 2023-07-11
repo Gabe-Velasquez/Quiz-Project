@@ -112,3 +112,16 @@ if (timeEl === 0 || questionSequence === 5){
 
 // WHEN the game is over
 // THEN I can save my initials and score
+
+function savedScores(){
+    btnSubmit.addEventListener('click', function(evt){
+        evt.preventDefault();
+        let highScores = JSON.parse(localStorage.getItem('highScores'))||[];
+        //object created for new scores
+        let newScore = {
+            initials: initials.value,
+            score: score
+        };
+        localStorage.setItem('highScores', JSON.stringify(highScores));
+    });
+};
