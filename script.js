@@ -49,14 +49,6 @@ function questionStart(){
     answerDEl.textContent = questions[questionSequence].options[3];
 }
 
-
-
-gameStart.addEventListener('click', function(){
-    questionStart();
-    setTime();
-});
-
-
 // WHEN I answer a question
 // THEN I am presented with another question
 const questions = [
@@ -131,6 +123,20 @@ function savedScores(){
         localStorage.setItem('highScores', JSON.stringify(highScores));
     });
 };
+
+//added event listeners to clear local storage and to reload
+function highScoresShow(){
+    btnClear.addEventListener('click', function(){
+        localStorage.clear();
+        document.location.reload();
+        highScoreScreen.style.display='none';
+    });
+    btnBack.addEventListener('click', function(){
+        document.loadtion.reload();
+        highScoreScreen.style.display = 'none';
+    })
+}
+
 function questionScoring(){
     gameInProgess.style.display = 'none';
     timeEl.style.display = 'none';
@@ -150,4 +156,8 @@ function showScores(){
         }).join("");
 }
 
-// scores.addEventListener('click', () =>
+gameStart.addEventListener('click', function(){
+    questionStart();
+    setTime();
+});
+
