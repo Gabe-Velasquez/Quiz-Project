@@ -2,6 +2,7 @@
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
 let timeEl = document.querySelector('.time');
+let scores = document.querySelector('.scores');
 let secondsLeft = 60;
 let gameStart = document.querySelector('#btnStart');
 let btnBack = document.querySelector('.btnback');
@@ -10,7 +11,8 @@ let btnSubmit = document.querySelector('.btnsubmit');
 let gameTitle = document.querySelector('.game-title');
 let gameInProgess = document.querySelector('.container');
 let highScoreScreen = document.querySelector('#high-score');
-let userScore = document.querySelector('#score');
+let userScore = document.querySelector('#user-score');
+let finalScore = document.querySelector('#scored-points');
 let initials = document.querySelector('#initials');
 
 let questionSequence = 0;
@@ -31,11 +33,15 @@ function setTime(){
 
         if (secondsLeft ===0){
             clearInterval(quizTimer);
+            questionScoring();
         }
     }, 1000); //setting it to 1000 because it is in milliseconds
 }
 
 function questionStart(){
+    if (questionSequence === questions.length){
+        return questionScoring();
+    }
     questionEl.textContent = questions[questionSequence].question;
     answerAEl.textContent = questions[questionSequence].options[0];
     answerBEl.textContent = questions[questionSequence].options[1];
@@ -104,12 +110,6 @@ function nextQuestion (options){
     }, 2000);
 }
 
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-if (timeEl === 0 || questionSequence === 5){
-    gameInProgess.style.display = 'hidden';
-}
-
 // WHEN the game is over
 // THEN I can save my initials and score
 
@@ -122,6 +122,32 @@ function savedScores(){
             initials: initials.value,
             score: score
         };
+        if (newScore == null){
+            highScores.push(newScore)
+        }else{
+            highScores.push(newScore)
+        };
+
         localStorage.setItem('highScores', JSON.stringify(highScores));
     });
 };
+function questionScoring(){
+    gameInProgess.style.display = 'none';
+    timeEl.style.display = 'none';
+    userScore.style.display = 'block';
+    finalScore.textContent = 'Your final score is '+ score;
+    savedScores();
+}
+function showScores(){
+    gameTitle.style.display = 'hidden';
+    userScore.style.display = 'hidden';
+    highScoreScreen.style.display = 'block';
+
+    let listScores = JSON.parse(localStorage.getItem('highScores'))||[];
+    highScores.textContent = listScores
+        .map(score =>{
+            return `<li class='score'>${score.initials} - ${score.score}</li>`;
+        }).join("");
+}
+
+// scores.addEventListener('click', () =>
