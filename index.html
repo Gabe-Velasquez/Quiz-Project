@@ -55,9 +55,11 @@
     </div>
 
     <!-- High Scores -->
-    <div class="high-score" id="high-score" hidden>
+    <div class="score-screen" id="score-screen" hidden>
+    <div class="high-score-list" id="high-score-list" >
         <h1>High Scores!!</h1>
         <ul id="score-list"></ul>
+    </div>
         <hr>
         <input type="button" value="Return to Game" class="btnback">
         <input type="button" value="Clear Scores" class="clear">
@@ -69,7 +71,7 @@
         <h2 id="scored-points">Final Score is...</h2>
         <form>
             <label for="initials">Your Initials:</label>
-            <input type="text" class="initials">
+            <input type="text" class="initials" id="initials">
             <input type="submit" value="submit" class="btnsubmit">
         </form>
     </div>

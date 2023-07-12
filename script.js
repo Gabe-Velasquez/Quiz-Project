@@ -10,10 +10,11 @@ let btnClear = document.querySelector('.clear');
 let btnSubmit = document.querySelector('.btnsubmit');
 let gameTitle = document.querySelector('.game-title');
 let gameInProgess = document.querySelector('.container');
-let highScoreScreen = document.querySelector('#high-score');
+let highScoreScreen = document.querySelector('#high-score-list');
+let scoreMenu = document.querySelector('.score-screen');
 let userScore = document.querySelector('#user-score');
 let finalScore = document.querySelector('#scored-points');
-let initials = document.querySelector('#initials');
+let initials = document.getElementById('initials');
 
 let questionSequence = 0;
 let score = 0;
@@ -31,7 +32,7 @@ function setTime(){
         secondsLeft--;
         timeEl.textContent = 'Seconds Left:' + ' ' + secondsLeft;
 
-        if (secondsLeft ===0){
+        if (secondsLeft <= 0){
             clearInterval(quizTimer);
             questionScoring();
         }
@@ -108,20 +109,24 @@ function nextQuestion (options){
 function savedScores(){
     btnSubmit.addEventListener('click', function(evt){
         evt.preventDefault();
-        let highScores = JSON.parse(localStorage.getItem('highScores'))||[];
+        let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
         //object created for new scores
         let newScore = {
             initials: initials.value, 
             score: score
         };
 
-        if (newScore == null){
-            highScores.push(newScore)
+        if (highScores === null){
+            highScores.push(newScore);
         }else{
             highScores.push(newScore)
         };
 
         localStorage.setItem('highScores', JSON.stringify(highScores));
+        showScores();
+        highScoreScreen.style.display = 'block';
+        scoreMenu.style.display = 'block';
+        userScore.style.display = 'none';
     });
 };
 
@@ -137,12 +142,12 @@ function questionScoring(){
 function showScores(){
     gameTitle.style.display = 'hidden';
     userScore.style.display = 'hidden';
-    highScoreScreen.hidden = false;
-
-    let listScores = JSON.parse(localStorage.getItem('highScores'))||[];
-    highScores.textContent = listScores
-        .map(score =>{
-            return `<li class='score'>${score.initials} - ${score.score}</li>`;
+    highScoreScreen.style.display = 'block';
+    scoreMenu.style.display = 'flex';
+    let listScores = JSON.parse(localStorage.getItem('highScores')) || [];
+    highScoreScreen.innerHTML = listScores
+        .map(score => {
+            return `<li class="score">${score.initials} - ${score.score}</li>`;
         }).join("");
 }
 
@@ -160,12 +165,13 @@ scores.addEventListener('click', function(){
 btnClear.addEventListener('click', function(){
     localStorage.clear();
     document.location.reload();
-    highScoreScreen.style.display='none';
+    // highScoreScreen.style.display = 'none';
+    // scoreMenu.style.display = 'none';
+    // userScore.style.display = 'none';
 });
 
 btnBack.addEventListener('click', function(){
     document.location.reload();
-    highScoreScreen.style.display = 'none';
     gameTitle.style.display = 'block';
 })
 
