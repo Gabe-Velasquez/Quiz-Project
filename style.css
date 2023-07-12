@@ -18,6 +18,10 @@ body{
     color: blue;
 }
 
+.high-score{
+    text-align: center;
+}
+
 .game-title{
     display: flex;
     justify-content: center;

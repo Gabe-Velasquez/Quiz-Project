@@ -111,9 +111,10 @@ function savedScores(){
         let highScores = JSON.parse(localStorage.getItem('highScores'))||[];
         //object created for new scores
         let newScore = {
-            initials: initials.value,
+            initials: initials.value, 
             score: score
         };
+
         if (newScore == null){
             highScores.push(newScore)
         }else{
@@ -124,18 +125,7 @@ function savedScores(){
     });
 };
 
-//added event listeners to clear local storage and to reload
-function highScoresShow(){
-    btnClear.addEventListener('click', function(){
-        localStorage.clear();
-        document.location.reload();
-        highScoreScreen.style.display='none';
-    });
-    btnBack.addEventListener('click', function(){
-        document.loadtion.reload();
-        highScoreScreen.style.display = 'none';
-    })
-}
+
 
 function questionScoring(){
     gameInProgess.style.display = 'none';
@@ -147,7 +137,7 @@ function questionScoring(){
 function showScores(){
     gameTitle.style.display = 'hidden';
     userScore.style.display = 'hidden';
-    highScoreScreen.style.display = 'block';
+    highScoreScreen.hidden = false;
 
     let listScores = JSON.parse(localStorage.getItem('highScores'))||[];
     highScores.textContent = listScores
@@ -160,4 +150,22 @@ gameStart.addEventListener('click', function(){
     questionStart();
     setTime();
 });
+
+scores.addEventListener('click', function(){
+    userScore.style.display ='none';
+    gameTitle.style.display = 'none';
+    showScores();
+});
+
+btnClear.addEventListener('click', function(){
+    localStorage.clear();
+    document.location.reload();
+    highScoreScreen.style.display='none';
+});
+
+btnBack.addEventListener('click', function(){
+    document.location.reload();
+    highScoreScreen.style.display = 'none';
+    gameTitle.style.display = 'block';
+})
 
